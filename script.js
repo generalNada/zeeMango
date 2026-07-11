@@ -414,9 +414,20 @@ function displayCurrentDate() {
   });
 }
 
-function displayDigitalClock() {
-  const clockEl = document.getElementById("digitalClock");
-  const now = new Date();
+const ELECTION_COUNTDOWNS = {
+  midterm: {
+    date: new Date(2026, 10, 3),
+    label: "2026 Midterm Elections",
+  },
+  general: {
+    date: new Date(2028, 10, 7),
+    label: "2028 General Election",
+  },
+};
+
+let clockMode = "clock";
+
+function formatLiveClock(now) {
   const hours = now.getHours();
   const minutes = String(now.getMinutes()).padStart(2, "0");
   const seconds = String(now.getSeconds()).padStart(2, "0");
@@ -427,12 +438,94 @@ function displayDigitalClock() {
   const period = hours >= 12 ? "PM" : "AM";
   const displayHours = hours % 12 || 12;
 
-  clockEl.textContent = `${displayHours}:${minutes}:${seconds}.${hundredths} ${period}`;
+  return `${displayHours}:${minutes}:${seconds}.${hundredths} ${period}`;
+}
+
+function formatCountdown(targetDate, now) {
+  let diffMs = targetDate.getTime() - now.getTime();
+
+  if (diffMs <= 0) {
+    return "Election day is here!";
+  }
+
+  const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  diffMs %= 1000 * 60 * 60 * 24;
+  const hours = Math.floor(diffMs / (1000 * 60 * 60));
+  diffMs %= 1000 * 60 * 60;
+  const minutes = Math.floor(diffMs / (1000 * 60));
+  diffMs %= 1000 * 60;
+  const seconds = Math.floor(diffMs / 1000);
+  const hundredths = Math.floor((diffMs % 1000) / 10);
+
+  return `${days}d ${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}.${String(hundredths).padStart(2, "0")}`;
+}
+
+function updateClockPresentation(clockEl) {
+  const isCountdown = clockMode !== "clock";
+  clockEl.classList.toggle("digital-clock--countdown", isCountdown);
+
+  if (clockMode === "clock") {
+    clockEl.title = "Click for 2026 midterm election countdown";
+    clockEl.setAttribute("aria-label", "Current time. Click for election countdown.");
+    return;
+  }
+
+  if (clockMode === "midterm") {
+    clockEl.title = "Click for 2028 general election countdown";
+    clockEl.setAttribute(
+      "aria-label",
+      "Countdown to 2026 midterm elections. Click for next countdown."
+    );
+    return;
+  }
+
+  clockEl.title = "Click to return to live clock";
+  clockEl.setAttribute(
+    "aria-label",
+    "Countdown to 2028 general election. Click to return to live clock."
+  );
+}
+
+function cycleClockMode() {
+  if (clockMode === "clock") {
+    clockMode = "midterm";
+  } else if (clockMode === "midterm") {
+    clockMode = "general";
+  } else {
+    clockMode = "clock";
+  }
+
+  const clockEl = document.getElementById("digitalClock");
+  updateClockPresentation(clockEl);
+  displayDigitalClock();
+}
+
+function displayDigitalClock() {
+  const clockEl = document.getElementById("digitalClock");
+  const now = new Date();
+
+  if (clockMode === "clock") {
+    clockEl.textContent = formatLiveClock(now);
+    return;
+  }
+
+  const countdown = ELECTION_COUNTDOWNS[clockMode];
+  clockEl.textContent = `${formatCountdown(countdown.date, now)} — ${countdown.label}`;
 }
 
 function startDigitalClock() {
+  const clockEl = document.getElementById("digitalClock");
+  updateClockPresentation(clockEl);
   displayDigitalClock();
   setInterval(displayDigitalClock, 10);
+
+  clockEl.addEventListener("click", cycleClockMode);
+  clockEl.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      cycleClockMode();
+    }
+  });
 }
 
 function getTodaysBirthdays() {

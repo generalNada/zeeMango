@@ -61,6 +61,23 @@ body {
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.06em;
   color: var(--text-on-dark);
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.15s ease;
+}
+
+.digital-clock:hover {
+  color: var(--accent);
+}
+
+.digital-clock--countdown {
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  color: #fde68a;
+}
+
+.digital-clock--countdown:hover {
+  color: #fef3c7;
 }
 
 .heading {
