@@ -28,7 +28,6 @@ const resultsDiv = document.getElementById("results");
 const clearBtn = document.getElementById("clearBtn");
 const showAllBtn = document.getElementById("showAllBtn");
 const clearAllBtn = document.getElementById("clearAllBtn");
-let allNamesVisible = false;
 let activeTodaysBirthdayView = null;
 
 const LETTER_TO_GPA = {
@@ -294,7 +293,6 @@ function filterNames() {
     heading = `${query.group} Group (${results.length})`;
   }
   displayResults(getSortedNames(results), heading);
-  allNamesVisible = false;
   clearTodaysBirthdayView();
 }
 
@@ -326,8 +324,6 @@ Object.values(inputs).forEach((input) => {
 });
 
 clearBtn.addEventListener("click", () => {
-      console.log("Clear All button works,");
-
   Object.values(inputs).forEach((input) => {
     if (input.tagName === "SELECT") {
       if (input.id === "group") {
@@ -342,21 +338,17 @@ clearBtn.addEventListener("click", () => {
     }
   });
   resultsDiv.innerHTML = "";
-  allNamesVisible = false;
   clearTodaysBirthdayView();
 });
 
 showAllBtn.addEventListener("click", () => {
-    console.log("Show All button works");
   const sortedNames = getSortedNames(myPeople);
   displayResults(sortedNames, `All Birthdays (${sortedNames.length})`);
-  allNamesVisible = true;
   clearTodaysBirthdayView();
 });
 
 clearAllBtn.addEventListener("click", () => {
   resultsDiv.innerHTML = "";
-  allNamesVisible = false;
   clearTodaysBirthdayView();
 });
 
@@ -443,7 +435,6 @@ function toggleTodaysBirthdayResults(people) {
   if (activeTodaysBirthdayView === viewKey) {
     resultsDiv.innerHTML = "";
     clearTodaysBirthdayView();
-    allNamesVisible = false;
     return;
   }
 
@@ -453,7 +444,6 @@ function toggleTodaysBirthdayResults(people) {
       : `Today's Birthdays (${people.length})`;
   displayResults(people, heading);
   activeTodaysBirthdayView = viewKey;
-  allNamesVisible = false;
   resultsDiv.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
