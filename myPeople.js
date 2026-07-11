@@ -912,18 +912,6 @@ export const myPeople = [
     notes: null,
   },
   {
-    firstName: "Trevor",
-    lastName: "Wil",
-    birthMonth: "March",
-    birthDay: 1,
-    birthYear: 1969,
-    passedAway: null,
-    comment: null,
-    groups: ["Pet", "All", "Family"],
-    grade: null,
-    notes: null,
-  },
-  {
     firstName: "Laura",
     lastName: "Wil",
     birthMonth: "December",
