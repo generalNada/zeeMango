@@ -67,6 +67,14 @@ body {
   color: var(--accent);
 }
 
+.addedNote {
+  font-size: 0.65rem;
+  display: block;
+  margin-top: 0.25rem;
+  font-weight: 500;
+  color: var(--text-on-dark-muted);
+}
+
 .todays-birthdays {
   display: inline-block;
   margin-top: 1rem;

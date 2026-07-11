@@ -19,7 +19,7 @@ export const myPeople = [
     birthYear: 1970,
     passedAway: null,
     comment: null,
-    groups: ["All", "Friend", "Fuckfaces"],
+    groups: ["All", "Friend", "Midwives"],
     grade: "A",
     notes: ["So Cool", "Crocheter"],
   },
@@ -944,7 +944,7 @@ export const myPeople = [
     passedAway: "AD 0033",
     comment: "Who really knows dates when it comes to this mysterious dude?",
     groups: ["Holiday People", "All", "Deceased"],
-    grade: null,
+    grade: "C-",
     notes: null,
   },
   {
