@@ -158,7 +158,9 @@ function buildPersonResult(aHuman) {
   mainLine.innerHTML = line;
   div.appendChild(mainLine);
 
-  const groups = (aHuman.groups || []).filter(hasValue);
+  const groups = (aHuman.groups || [])
+    .filter(hasValue)
+    .filter((group) => group !== "All");
   if (groups.length > 0) {
     const groupsEl = document.createElement("div");
     groupsEl.className = "result-groups";
