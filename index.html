@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Birthday Searcher</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="app-header">
+        <p id="currentDate" class="current-date"></p>
+        <h1 class="heading">
+          Damien Oliver Royer's
+          <span class="heading-accent">Birthday Searcher</span>
+        </h1>
+        <div
+          id="todaysBirthdays"
+          class="todays-birthdays"
+          aria-live="polite"
+        ></div>
+      </header>
+
+      <main class="app-main">
+        <section class="search-panel" aria-label="Search filters">
+          <div class="panel-header">
+            <h2 class="panel-title">Search People</h2>
+            <p class="panel-subtitle">
+              Filter by name, group, or birthday details
+            </p>
+          </div>
+
+          <div id="search" class="search-form">
+            <div class="search-grid">
+              <label class="field">
+                <span class="field-label">First Name</span>
+                <input type="text" id="firstName" placeholder="e.g. Sue" />
+              </label>
+
+              <label class="field">
+                <span class="field-label">Last Name</span>
+                <input type="text" id="lastName" placeholder="e.g. Bl" />
+              </label>
+
+              <label class="field">
+                <span class="field-label">Group</span>
+                <select id="group">
+                  <option value="">All groups</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span class="field-label">Birth Month</span>
+                <select id="birthMonth">
+                  <option value="">All months</option>
+                  <option value="all">All Months</option>
+                  <option>January</option>
+                  <option>February</option>
+                  <option>March</option>
+                  <option>April</option>
+                  <option>May</option>
+                  <option>June</option>
+                  <option>July</option>
+                  <option>August</option>
+                  <option>September</option>
+                  <option>October</option>
+                  <option>November</option>
+                  <option>December</option>
+                </select>
+              </label>
+
+              <label class="field field--narrow">
+                <span class="field-label">Day</span>
+                <input type="number" id="birthDay" placeholder="1–31" />
+              </label>
+
+              <label class="field field--narrow">
+                <span class="field-label">Year</span>
+                <input type="number" id="birthYear" placeholder="e.g. 1990" />
+              </label>
+            </div>
+
+            <div class="button-row">
+              <button id="showAllBtn" class="btn btn-primary" type="button">
+                Show All
+              </button>
+              <button id="clearBtn" class="btn btn-secondary" type="button">
+                Clear Filters
+              </button>
+              <button id="clearAllBtn" class="btn btn-ghost" type="button">
+                Clear Results
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="results"
+          class="results-panel"
+          aria-label="Search results"
+        ></section>
+      </main>
+    </div>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "zeemango",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate-practice-pdf": "node generate-practice-pdf.js"
+  },
+  "dependencies": {
+    "pdf-lib": "^1.17.1"
+  }
+}
