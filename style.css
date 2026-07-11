@@ -46,11 +46,21 @@ body {
 }
 
 .current-date {
-  margin: 0 0 0.75rem;
+  margin: 0 0 0.35rem;
   font-size: 0.95rem;
   font-weight: 500;
   letter-spacing: 0.02em;
   color: var(--text-on-dark-muted);
+}
+
+.digital-clock {
+  margin: 0 0 0.75rem;
+  font-family: "SF Mono", "Menlo", "Consolas", monospace;
+  font-size: 1.35rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+  color: var(--text-on-dark);
 }
 
 .heading {

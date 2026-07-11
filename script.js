@@ -414,6 +414,27 @@ function displayCurrentDate() {
   });
 }
 
+function displayDigitalClock() {
+  const clockEl = document.getElementById("digitalClock");
+  const now = new Date();
+  const hours = now.getHours();
+  const minutes = String(now.getMinutes()).padStart(2, "0");
+  const seconds = String(now.getSeconds()).padStart(2, "0");
+  const hundredths = String(Math.floor(now.getMilliseconds() / 10)).padStart(
+    2,
+    "0"
+  );
+  const period = hours >= 12 ? "PM" : "AM";
+  const displayHours = hours % 12 || 12;
+
+  clockEl.textContent = `${displayHours}:${minutes}:${seconds}.${hundredths} ${period}`;
+}
+
+function startDigitalClock() {
+  displayDigitalClock();
+  setInterval(displayDigitalClock, 10);
+}
+
 function getTodaysBirthdays() {
   const now = new Date();
   const todayMonth = MONTHS[now.getMonth()];
@@ -494,4 +515,5 @@ function displayTodaysBirthdays() {
 populateGroupDropdown();
 updateDropdownWithCounts();
 displayCurrentDate();
+startDigitalClock();
 displayTodaysBirthdays();
